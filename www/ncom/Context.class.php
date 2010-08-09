@@ -1,6 +1,17 @@
 <?php
 class ncom_Context extends nc_lib_Context
 {
-	// Context for the application
+	/**
+	 * Sets and returns renderer
+	 *
+	 * @return Smarty
+	 */
+	public function getSmarty()
+	{
+		if(is_null($this->smarty))
+			$this->smarty = new Smarty;
+
+		return $this->smarty;
+	}
 }
 

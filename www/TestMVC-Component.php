@@ -8,12 +8,8 @@ $pathToBootstrap = dirname(dirname(__FILE__)) .
 
 require_once $pathToBootstrap;
 
-$view = new ncom_test_View();
-$context = new ncom_Context();
+$context = new ncom_Context;
 
-$controller = new nc_lib_controller(
-	$_REQUEST, $context
-);
-
-$controller->dispatch();
+$controller = new ncom_test_Controller($context);
+$controller->setRequest(new ncom_test_Request($_REQUEST));
 

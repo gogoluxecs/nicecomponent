@@ -1,15 +1,15 @@
 <?php
-class nc_lib_Context
+abstract class nc_lib_Context
 implements nc_lib_Icontext
 {
 	protected $context = null;
+
+	private $data = array();
 
 	public function __construct($context = null)
 	{
 		if(!is_null($this->context))
 			$this->context = $context;
-
-		$this->data = new StdClass();
 	}
 
 	/**
@@ -19,8 +19,8 @@ implements nc_lib_Icontext
 	 */
 	public function __set($k, $v)
 	{
-		if(!property_exists($this, $k))
-			$this->data->$k = $v;
+		if(!isset($this->data[$k]))
+			$this->data[$k] = $v;
 	}
 
 	/**
@@ -30,7 +30,8 @@ implements nc_lib_Icontext
 	 */
 	public function __get($k)
 	{
-		return $this->data->$k;
+		if (isset($this->data[$k]))
+			return $this->data[$k];
 	}
 
 	public function set($k = null, $v = null)

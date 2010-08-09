@@ -1,20 +1,27 @@
 <?php
 
-abstract class nc_lib_Controller()
+abstract class nc_lib_Controller
 {
 	protected $reqeust = array();
 	protected $context = null;
-	protected $view = null;
 
-	public function __construct($context, $request)
+	public function __construct(nc_lib_Context $context)
 	{
+		$this->overrideSuper();
+
 		$this->context = $context;
+	}
+
+	public function setRequest(nc_lib_request $request)
+	{
 		$this->request = $request;
 	}
 
-	public function dispatch()
-	{
-		$this->view->render();
-	}
+	/**
+	 * Extending constructor from child
+	 *
+	 * @return Mixed
+	 */
+	protected function overrideSuper() {}
 }
 

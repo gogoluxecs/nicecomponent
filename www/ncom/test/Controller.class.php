@@ -1,14 +1,9 @@
 <?php
 class ncom_test_Controller
+extends nc_lib_Controller
 {
-	public function getOldMessage()
-	{
-		// query to get old message
-	}
-
-	public function getNewMessage()
-	{
-		// query to get new message
-	}
+	// call the commands depending on request
+	// and sets the view per each command
+	// commands can share one or different views
 }
 
