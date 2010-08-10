@@ -8,8 +8,13 @@ $pathToBootstrap = dirname(dirname(__FILE__)) .
 
 require_once $pathToBootstrap;
 
-$context = new ncom_Context;
+// initialize content in this way, because we need to use its global instance everywhere
+$context = nc_lib_LazyInitilization::init('ncom_Context');
 
-$controller = new ncom_test_Controller($context);
-$controller->setRequest(new ncom_test_Request($_REQUEST));
+$view = new ncom_test_ViewController($context);
+
+// initialize component
+$controller = new ncom_test_OperationController($context);
+$controller->setView($view);
+$controller->dispatch();
 

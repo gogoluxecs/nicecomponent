@@ -11,7 +11,11 @@ abstract class nc_lib_Request
 	{
 		$this->data = $request;
 		$this->clean();
-		$this->encode();
+	}
+
+	public function get()
+	{
+		return $this->data;
 	}
 
 	/**
@@ -19,7 +23,7 @@ abstract class nc_lib_Request
 	 *
 	 * @return Void
 	 */
-	protected private function clean()
+	protected function clean()
 	{
 		$clean = array();
 
@@ -30,11 +34,6 @@ abstract class nc_lib_Request
 		}
 
 		$this->data = $clean;
-	}
-
-	public function get()
-	{
-		return $this->data;
 	}
 }
 
